@@ -76,6 +76,7 @@ jobs:
           COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
         run: mvn -DrepoToken=${COVERALLS_TOKEN} -DserviceJobId=${GITHUB_RUN_ID} -Dbranch=${GITHUB_REF} -DpullRequest=${GITHUB_HEAD_REF} -DserviceName=GITHUB verify jacoco:report coveralls:report
           
+      # Push to GAR
       - name: Login to GAR
         uses: docker/login-action@v1
         if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master'
